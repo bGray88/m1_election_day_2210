@@ -79,6 +79,10 @@ describe Election do
       @race2.close!
 
       expect(@election.winners).to eq([candidate1, candidate3])
+
+      4.times {candidate4.vote_for!}
+
+      expect(@election.winners).to eq([candidate1])
     end
   end
 end
