@@ -17,4 +17,15 @@ describe Candidate do
       expect(@candidate1.votes).to eq(0)
     end
   end
+
+  describe '#vote_for!' do
+    it 'increments votes once per call' do
+      @candidate1.vote_for!
+      @candidate1.vote_for!
+      @candidate1.vote_for!
+      @candidate1.vote_for!
+
+      expect(@candidate1.votes).to eq(4)
+    end
+  end
 end
