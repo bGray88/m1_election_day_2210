@@ -23,6 +23,9 @@ describe Candidate do
       @candidate1.vote_for!
       @candidate1.vote_for!
       @candidate1.vote_for!
+
+      expect(@candidate1.votes).to eq(3)
+      
       @candidate1.vote_for!
 
       expect(@candidate1.votes).to eq(4)
