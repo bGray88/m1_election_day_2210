@@ -5,15 +5,17 @@ require './lib/election'
 
 describe Election do
   before(:each) do
-    @election = Election.new
+    @election = Election.new('2022')
     @race1 = Race.new("Texas Governor")
-    @candidate1 = Candidate.new({name: "Diana D", party: :democrat})
-    @candidate2 = Candidate.new({name: "Roberto R", party: :republican})
   end
 
   describe '#initialization' do
     it 'exists' do
       expect(@election).to be_instance_of(Election)
+    end
+
+    it 'has a year when initialized' do
+      expect(@election.year).to eq('2022')
     end
   end
 end

@@ -1,5 +1,9 @@
 class Election
-  def initialize()
-    
+
+  attr_reader :year
+  
+  def initialize(year)
+    @year = year
+    @races = []
   end
 end
