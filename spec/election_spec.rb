@@ -17,5 +17,9 @@ describe Election do
     it 'has a year when initialized' do
       expect(@election.year).to eq('2022')
     end
+
+    it 'has no race upon creation' do
+      expect(@election.races).to eq([])
+    end
   end
 end
