@@ -32,8 +32,7 @@ class Race
 
   def tie?
     return false if @open
-    all_cands = @candidates.map {|cand| cand.votes}.length
-    rm_dups = @candidates.map {|cand| cand.votes}.uniq.length
-    all_cands > rm_dups
+    high_votes = @candidates.max_by {|cand| cand.votes}
+    @candidates.count {|cand| cand.votes == high_votes.votes} > 1
   end
 end

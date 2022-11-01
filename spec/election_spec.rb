@@ -57,4 +57,28 @@ describe Election do
                                            "Ida I"=>6})
     end
   end
+
+  describe '#winners' do
+    it 'returns collection of winners from each race' do
+      @election.add_race(@race1)
+      @election.add_race(@race2)
+
+      candidate1 = @race1.register_candidate!({name: "Diana D", party: :democrat})
+      candidate2 = @race1.register_candidate!({name: "Roberto R", party: :republican})
+      candidate3 = @race2.register_candidate!({name: "Diego D", party: :democrat})
+      candidate4 = @race2.register_candidate!({name: "Rita R", party: :republican})
+      candidate5 = @race2.register_candidate!({name: "Ida I", party: :independent})
+
+      4.times {candidate1.vote_for!}
+      1.times {candidate2.vote_for!}
+      10.times {candidate3.vote_for!}
+      6.times {candidate4.vote_for!}
+      6.times {candidate5.vote_for!}
+
+      @race1.close!
+      @race2.close!
+
+      expect(@election.winners).to eq([candidate1, candidate3])
+    end
+  end
 end

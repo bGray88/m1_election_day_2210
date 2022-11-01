@@ -21,4 +21,8 @@ class Election
     candidates.each {|cand| counts[cand.name] = cand.votes}
     counts
   end
+
+  def winners
+    @races.map {|race| race.winner unless race.tie?}.compact
+  end
 end
