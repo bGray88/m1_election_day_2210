@@ -60,4 +60,30 @@ describe Race do
       expect(@race1.winner).to eq(candidate2)
     end
   end
+
+  describe '#tie?' do
+    it 'checks for closed and returns current highest votes holder' do
+      expect(@race1.winner).to eq(false)
+
+      candidate1 = @race1.register_candidate!({name: "Diana D", party: :democrat})
+      candidate2 = @race1.register_candidate!({name: "Roberto R", party: :republican})
+      candidate3 = @race1.register_candidate!({name: "Diego D", party: :democrat})
+      candidate4 = @race1.register_candidate!({name: "Rita R", party: :republican})
+      candidate5 = @race1.register_candidate!({name: "Ida I", party: :independent})
+
+      10.times {candidate1.vote_for!}
+      10.times {candidate2.vote_for!}
+      4.times {candidate3.vote_for!}
+      1.times {candidate4.vote_for!}
+      6.times {candidate5.vote_for!}
+
+      @race1.close!
+
+      expect(@race1.tie?).to be true
+
+      candidate1.vote_for!
+
+      expect(@race1.tie?).to be false
+    end
+  end
 end
