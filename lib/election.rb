@@ -7,4 +7,8 @@ class Election
     @year = year
     @races = []
   end
+
+  def add_race(race)
+    @races.push(race)
+  end
 end
