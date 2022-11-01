@@ -24,4 +24,9 @@ class Race
   def close!
     @open = false
   end
+
+  def winner
+    return false if @open
+   p @candidates.max_by {|cand| cand.votes}
+  end
 end

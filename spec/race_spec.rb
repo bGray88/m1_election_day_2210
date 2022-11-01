@@ -32,16 +32,32 @@ describe Race do
     end
   end
 
-  describe 'open?' do
+  describe '#open?' do
     it 'indicates whether the race is open by boolean' do
       expect(@race1.open?).to eq(true)
     end
   end
 
-  describe 'close!' do
+  describe '#close!' do
     it 'changes the open state to false' do
       @race1.close!
       expect(@race1.open?).to eq(false)
+    end
+  end
+
+  describe '#winner' do
+    it 'checks for closed and returns current highest votes holder' do
+      expect(@race1.winner).to eq(false)
+
+      candidate1 = @race1.register_candidate!({name: "Diana D", party: :democrat})
+      candidate2 = @race1.register_candidate!({name: "Roberto R", party: :republican})
+
+      4.times {candidate1.vote_for!}
+      10.times {candidate2.vote_for!}
+
+      @race1.close!
+
+      expect(@race1.winner).to eq(candidate2)
     end
   end
 end
