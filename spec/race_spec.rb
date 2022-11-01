@@ -5,6 +5,7 @@ require './lib/race'
 describe Race do
   before(:each) do
     @race1 = Race.new("Texas Governor")
+    @candidate1 = Candidate.new({name: "Diana D", party: :democrat})
   end
 
   describe '#initialization' do
@@ -14,6 +15,14 @@ describe Race do
 
     it 'does not have candidates upon creation' do
       expect(@race1.candidates).to eq([])
+    end
+  end
+
+  describe '#register_candidate!' do
+    it 'assigns candidate instance to collection' do
+      @race1.register_candidate!(@candidate1)
+
+      expect(@race1.candidates).to eq([@candidate1])
     end
   end
 end
