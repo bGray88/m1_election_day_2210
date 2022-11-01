@@ -14,6 +14,7 @@ describe Candidate do
     it 'creates attributes upon creation' do
       expect(@candidate1.name).to eq("Diana D")
       expect(@candidate1.party).to eq(:democrat)
+      expect(@candidate1.votes).to eq(0)
     end
   end
 end
