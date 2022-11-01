@@ -31,4 +31,17 @@ describe Race do
       expect(@race1.candidates).to eq([candidate1, candidate2])
     end
   end
+
+  describe 'open?' do
+    it 'indicates whether the race is open by boolean' do
+      expect(@race1.open?).to eq(true)
+    end
+  end
+
+  describe 'close!' do
+    it 'changes the open state to false' do
+      @race1.close!
+      expect(@race1.open?).to eq(false)
+    end
+  end
 end
